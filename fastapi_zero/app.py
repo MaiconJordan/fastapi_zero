@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from fastapi import FastAPI
 
-from fastapi_zero.schemas import Message, UserSchema, UserPublic, UserDB
+from fastapi_zero.schemas import Message, UserDB, UserPublic, UserSchema
 
 app = FastAPI()
 
