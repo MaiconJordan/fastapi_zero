@@ -28,3 +28,8 @@ def create_user(user: UserSchema):
 @app.get('/users/', status_code=HTTPStatus.OK, response_model=UserList)
 def read_users():
     return {'users':database}
+
+@app.put('/users/{user_id}', status_code=HTTPStatus.OK, response_model=UserPublic)
+def update_user(user_id: int, user: UserSchema):
+    ...
+
