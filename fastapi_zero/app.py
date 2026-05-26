@@ -31,5 +31,8 @@ def read_users():
 
 @app.put('/users/{user_id}', status_code=HTTPStatus.OK, response_model=UserPublic)
 def update_user(user_id: int, user: UserSchema):
-    ...
+    user_whith_id = UserDB(**user.model_dump(), id=user_id)
+
+    database[user_id - 1] = user_whith_id
+    return user_whith_id
 
