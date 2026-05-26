@@ -38,3 +38,18 @@ def test_read_users(client):
             }
         ]
     }
+
+
+def test_update_user(client):
+    response = client.put('/users/1', json={
+        "username": "John Doe Updated",
+        "email": "johnupdate@example.com",
+        "password": "newsecret123"
+    }
+)
+    assert response.status_code == HTTPStatus.OK
+    assert response.json() == {
+        "username": "John Doe Updated",
+        "email": "johnupdate@example.com",
+        "id": 1
+    }
