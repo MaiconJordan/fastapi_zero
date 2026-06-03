@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from http.client import HTTPException
 
 from fastapi import FastAPI
 
@@ -45,5 +46,7 @@ def read_users():
 def update_user(user_id: int, user: UserSchema):
     user_whith_id = UserDB(**user.model_dump(), id=user_id)
 
-    database[user_id - 1] = user_whith_id
+    if user_id > len(database) or user_id <= len(database):
+        HTTPException(status_code=HTTPStatus.NOT_FOUND, 
+                      detail='Usuário não encontrado')
     return user_whith_id
